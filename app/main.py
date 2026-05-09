@@ -5,13 +5,16 @@ def main():
     
     while True:
         sys.stdout.write("$ ")
-        user_cmd = input()
+        user_cmd_arg = input().split(" ")
+        user_cmd = user_cmd_arg[0]
 
         match user_cmd:
+            case 'echo':
+                print(" ".join(user_cmd_arg[1:]))
             case 'exit':
                 break
-
-        print(f"{user_cmd}: command not found")
+            case _:
+                print(f"{user_cmd}: command not found")
 
 
 if __name__ == "__main__":
