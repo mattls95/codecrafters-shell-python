@@ -10,7 +10,7 @@ def main():
 
         match user_cmd:
             case 'type':
-                if user_cmd in ('echo', 'exit', 'type'):
+                if user_cmd_arg[1] in ('echo', 'exit', 'type'):
                     print(f"{user_cmd} is a shell builtin")
             case 'echo':
                 print(" ".join(user_cmd_arg[1:]))
