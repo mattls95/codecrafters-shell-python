@@ -17,7 +17,7 @@ def main():
                 if type_arg in ('echo', 'exit', 'type'):
                     print(f"{type_arg} is a shell builtin")
                 else:
-                    print(search_for_executable(type_arg))
+                    print(f"command is {search_for_executable(type_arg)}")
             case 'echo':
                 print(" ".join(user_cmd_arg[1:]))
             case 'exit':
@@ -25,7 +25,7 @@ def main():
             case _:
                 file_path = search_for_executable(user_cmd)
                 if file_path:
-                    print(subprocess.run(user_cmd_arg, capture_output=True, text=True).stdout)
+                    print(subprocess.run(user_cmd_arg, capture_output=True, text=True).stdout,end="")
                 else:
                     print(f"{user_cmd}: command not found")
 
