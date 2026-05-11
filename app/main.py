@@ -12,6 +12,8 @@ def main():
         user_cmd = user_cmd_arg[0]
 
         match user_cmd:
+            case 'pwd':
+                print(os.path.abspath("."))
             case 'type':
                 type_arg = user_cmd_arg[1]
                 executable = get_executable(type_arg)
