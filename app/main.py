@@ -17,7 +17,7 @@ def main():
                 if type_arg in ('echo', 'exit', 'type'):
                     print(f"{type_arg} is a shell builtin")
                 else:
-                    print(f"command is {search_for_executable(type_arg)}")
+                    print(f"{user_cmd} is {search_for_executable(type_arg)}")
             case 'echo':
                 print(" ".join(user_cmd_arg[1:]))
             case 'exit':
