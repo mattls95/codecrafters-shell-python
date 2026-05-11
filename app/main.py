@@ -25,7 +25,7 @@ def main():
             case _:
                 file_path = search_for_executable(user_cmd)
                 if file_path:
-                    subprocess.run(user_cmd_arg, capture_output=True, text=True)
+                    print(subprocess.run(user_cmd_arg, capture_output=True, text=True).stdout)
                 else:
                     print(f"{user_cmd}: command not found")
 
