@@ -1,6 +1,7 @@
 import sys
 import os
 import shutil
+import subprocess
 
 
 def main():
@@ -16,26 +17,33 @@ def main():
                 if type_arg in ('echo', 'exit', 'type'):
                     print(f"{type_arg} is a shell builtin")
                 else:
-                    search_for_executable(type_arg)
+                    print(search_for_executable(type_arg))
             case 'echo':
                 print(" ".join(user_cmd_arg[1:]))
             case 'exit':
                 break
             case _:
-                print(f"{user_cmd}: command not found")
+                file_path = search_for_executable(user_cmd)
+                if file_path:
+                    res = subprocess.run([", ".join(user_cmd_arg)], capture_output=True, text=True)
+                    print(res)
+                else:
+                    print(f"{user_cmd}: command not found")
 
 
-def search_for_executable(cmd:str) -> None:
+def search_for_executable(cmd:str) -> str:
    paths = os.environ["PATH"].split(":")
    for path in paths:
       file_path = os.path.abspath(path) + f"/{cmd}"
       if os.path.isfile(file_path):
-        if shutil.which(file_path):
-          print(f"{cmd} is {file_path}")
-          return
+        if is_executable(file_path):
+          return file_path
         else:
             continue
-   print(f"{cmd} not found")
+   return None
+
+def is_executable(file_path:str):
+    return shutil.which(file_path)
 
 
 if __name__ == "__main__":
