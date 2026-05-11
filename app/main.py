@@ -17,7 +17,7 @@ def main():
             case 'type':
                 type_arg = user_cmd_arg[1]
                 executable = get_executable(type_arg)
-                if type_arg in ('echo', 'exit', 'type'):
+                if type_arg in ('echo', 'exit', 'type', 'pwd'):
                     print(f"{type_arg} is a shell builtin")
                 elif executable:
                     print(f"{user_cmd_arg[1]} is {executable}")
