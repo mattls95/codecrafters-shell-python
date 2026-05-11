@@ -14,23 +14,26 @@ def main():
         match user_cmd:
             case 'type':
                 type_arg = user_cmd_arg[1]
+                executable = get_executable(type_arg)
                 if type_arg in ('echo', 'exit', 'type'):
                     print(f"{type_arg} is a shell builtin")
+                elif executable:
+                    print(f"{user_cmd_arg[1]} is {executable}")
                 else:
-                    print(f"{user_cmd_arg[1]} is {search_for_executable(type_arg)}")
+                    print(f"{user_cmd_arg[1]} not found")
             case 'echo':
                 print(" ".join(user_cmd_arg[1:]))
             case 'exit':
                 break
             case _:
-                file_path = search_for_executable(user_cmd)
+                file_path = get_executable(user_cmd)
                 if file_path:
                     print(subprocess.run(user_cmd_arg, capture_output=True, text=True).stdout,end="")
                 else:
                     print(f"{user_cmd}: command not found")
 
 
-def search_for_executable(cmd:str) -> str:
+def get_executable(cmd:str) -> str:
    paths = os.environ["PATH"].split(":")
    for path in paths:
       file_path = os.path.abspath(path) + f"/{cmd}"
