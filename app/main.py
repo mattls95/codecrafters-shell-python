@@ -1,6 +1,4 @@
 import sys
-import subprocess
-from get_executable import get_executable
 from execute_commands import execute_pwd_cmd, execute_type_cmd, execute_echo_cmd, execute_default, execute_cd_cmd
 
 
