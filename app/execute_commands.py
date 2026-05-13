@@ -1,13 +1,15 @@
-import os.path
+import os
 import subprocess
 from .get_executable import get_executable
 
 
 def execute_cd_cmd(path:str) -> None:
-  if os.path.exists(path):
-      os.chdir(path)
-      return
-  print(f"{path}: No such file or directory")
+    if path == '~':
+        os.chdir(os.environ["HOME"])
+    elif os.path.exists(path):
+        os.chdir(path)
+        return
+    print(f"{path}: No such file or directory")
 
 def execute_pwd_cmd() -> None:
     print(os.path.abspath("."))
