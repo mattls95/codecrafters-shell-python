@@ -8,7 +8,7 @@ def main():
         sys.stdout.write("$ ")
         user_cmd_arg = input().split(" ")
         user_cmd = user_cmd_arg[0]
-        print(user_cmd)
+  
         match user_cmd:
             case 'pwd':
                 execute_pwd_cmd()
