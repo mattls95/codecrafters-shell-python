@@ -1,6 +1,6 @@
 import os.path
 import subprocess
-from get_executable import get_executable
+from .get_executable import get_executable
 
 
 def execute_cd_cmd(path:str) -> None:
