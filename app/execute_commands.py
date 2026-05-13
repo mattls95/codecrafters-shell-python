@@ -4,8 +4,9 @@ from .get_executable import get_executable
 
 
 def execute_cd_cmd(path:str) -> None:
-    if path == '~':
+    if path.strip() == "~":
         os.chdir(os.environ["HOME"])
+        return
     elif os.path.exists(path):
         os.chdir(path)
         return
