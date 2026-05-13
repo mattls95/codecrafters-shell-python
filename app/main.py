@@ -8,21 +8,21 @@ def main():
         sys.stdout.write("$ ")
         user_cmd_arg = input().split(" ")
         user_cmd = user_cmd_arg[0]
-
+        print(user_cmd)
         match user_cmd:
             case 'pwd':
                 execute_pwd_cmd()
             case 'type':
                 type_arg = user_cmd_arg[1]
-                execute_type_cmd(user_cmd_arg, type_arg)
+                execute_type_cmd(user_cmd_arg=user_cmd_arg, type_arg=type_arg)
             case 'echo':
-                execute_echo_cmd(user_cmd_arg)
+                execute_echo_cmd(user_cmd_arg=user_cmd_arg)
             case 'cd':
                 execute_cd_cmd(path=user_cmd_arg[1])
             case 'exit':
                 break
             case _:
-                execute_default(user_cmd, user_cmd_arg)
+                execute_default(user_cmd_arg=user_cmd_arg, user_cmd=user_cmd)
 
 
 if __name__ == "__main__":
