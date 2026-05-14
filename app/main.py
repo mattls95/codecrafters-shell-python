@@ -6,7 +6,8 @@ def main():
     
     while True:
         sys.stdout.write("$ ")
-        user_cmd_arg = input().split(" ")
+        user_input = input()
+        user_cmd_arg = user_input.split(" ")
         user_cmd = user_cmd_arg[0]
   
         match user_cmd:
@@ -16,7 +17,7 @@ def main():
                 type_arg = user_cmd_arg[1]
                 execute_type_cmd(user_cmd_arg=user_cmd_arg, type_arg=type_arg)
             case 'echo':
-                execute_echo_cmd(user_cmd_arg=user_cmd_arg)
+                execute_echo_cmd(user_input=user_input)
             case 'cd':
                 execute_cd_cmd(path=user_cmd_arg[1])
             case 'exit':

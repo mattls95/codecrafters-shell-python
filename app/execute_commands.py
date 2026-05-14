@@ -1,5 +1,6 @@
 import os
 import subprocess
+import re
 from .get_executable import get_executable
 
 
@@ -24,8 +25,19 @@ def execute_type_cmd(user_cmd_arg, type_arg):
     else:
         print(f"{user_cmd_arg[1]} not found")
 
-def execute_echo_cmd(user_cmd_arg):
-    print(" ".join(user_cmd_arg[1:]))
+def execute_echo_cmd(user_input:str):
+    match_obj_double_quotes = re.search(r"\S+''\S+", user_input)
+    match_obj_single_quotes = re.search(r"'(.*)'", user_input)
+
+    if match_obj_double_quotes:
+       print(match_obj_double_quotes.group(0).replace("'", ""))
+    elif match_obj_single_quotes:
+        print(match_obj_single_quotes.group(0).replace("'", ""))
+    else:
+        lst_cmd = user_input.split(None)
+        lst_arg = lst_cmd[1:]
+        print(" ".join(lst_arg))
+        
 
 def execute_default(user_cmd_arg, user_cmd):
     file_path = get_executable(user_cmd)
