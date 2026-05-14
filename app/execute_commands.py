@@ -26,17 +26,17 @@ def execute_type_cmd(user_cmd_arg, type_arg):
         print(f"{user_cmd_arg[1]} not found")
 
 def execute_echo_cmd(user_input:str):
-    match_obj_double_quotes = re.search(r"\S+''\S+", user_input)
-    match_obj_single_quotes = re.search(r"'(.*)'", user_input)
+    args = re.search(r"\s(.*)", user_input).group(1)
+    tokens = re.findall(r"'[^']*(?:''[^']*)*'|\S+", args)
 
-    if match_obj_double_quotes:
-       print(match_obj_double_quotes.group(0).replace("'", ""))
-    elif match_obj_single_quotes:
-        print(match_obj_single_quotes.group(0).replace("'", ""))
-    else:
-        lst_cmd = user_input.split(None)
-        lst_arg = lst_cmd[1:]
-        print(" ".join(lst_arg))
+    result = []
+    for token in tokens:
+        if token.startswith("'") and token.endswith("'"):
+            result.append(token[1:-1].replace("''", ""))
+        else:
+            result.append(token.replace("''", ""))
+    
+    print(" ".join(result))
         
 
 def execute_default(user_cmd_arg, user_cmd):
