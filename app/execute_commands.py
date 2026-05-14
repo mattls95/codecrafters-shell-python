@@ -36,7 +36,7 @@ def execute_echo_cmd(user_input:str):
         else:
             result.append(token.replace("''", ""))
     
-    print(" ".join(result), end="")
+    print(" ".join(result))
         
 
 def execute_default(user_cmd_arg, user_cmd):
