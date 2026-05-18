@@ -1,5 +1,5 @@
 import sys
-from .execute_commands import execute_pwd_cmd, execute_type_cmd, execute_echo_cmd, execute_default, execute_cd_cmd
+from .execute_commands import execute_pwd_cmd, execute_type_cmd, execute_echo_cmd, execute_default, execute_cd_cmd, execute_cat_cmd
 
 
 def main():
@@ -20,6 +20,8 @@ def main():
                 execute_echo_cmd(user_input=user_input)
             case 'cd':
                 execute_cd_cmd(path=user_cmd_arg[1])
+            case 'cat':
+                execute_cat_cmd(user_input=user_input)
             case 'exit':
                 break
             case _:
