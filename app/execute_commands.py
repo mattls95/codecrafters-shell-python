@@ -27,12 +27,7 @@ def execute_type_cmd(user_cmd_arg, type_arg):
 
 def execute_echo_cmd(user_input:str):
     tokens = split(user_input)
-
-    for token in tokens:
-        if token.startswith("'") and token.endswith("'"):
-            token.replace("'", "")
-
-    print("".join(tokens[1:]))
+    print(" ".join(tokens[1:]))
         
 
 def execute_default(user_cmd_arg, user_cmd):
