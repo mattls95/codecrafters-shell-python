@@ -28,11 +28,11 @@ def execute_type_cmd(user_cmd_arg, type_arg):
 def execute_echo_cmd(user_input:str):
     tokens = split(user_input)
     print(" ".join(tokens[1:]))
-        
 
 def execute_default(user_cmd_arg, user_cmd):
     file_path = get_executable(user_cmd)
     if file_path:
-        print(subprocess.run(user_cmd_arg, capture_output=True, text=True).stdout,end="")
+        shell_secured_str = join(user_cmd_arg)
+        print(subprocess.run(split(shell_secured_str), capture_output=True, text=True).stdout,end="")
     else:
         print(f"{user_cmd}: command not found")
