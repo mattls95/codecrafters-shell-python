@@ -29,7 +29,6 @@ def execute_echo_cmd(user_input:str):
     tokens = split(user_input)
 
     for token in tokens:
-        print(token)
         if token.startswith("'") and token.endswith("'"):
             token.replace("'", "")
 
