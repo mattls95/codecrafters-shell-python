@@ -27,12 +27,13 @@ def execute_type_cmd(user_cmd_arg, type_arg):
 
 def execute_echo_cmd(user_input:str):
     tokens = split(user_input)
-    tokens_str = join(tokens[1:])
 
-    if tokens_str.startswith("'") and tokens_str.endswith("'"):
-        print(tokens_str.replace("'", ""))
-    else:
-        print(tokens_str)
+    for token in tokens:
+        print(token)
+        if token.startswith("'") and token.endswith("'"):
+            token.replace("'", "")
+
+    print("".join(tokens))
         
 
 def execute_default(user_cmd_arg, user_cmd):
