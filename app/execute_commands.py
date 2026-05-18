@@ -1,6 +1,6 @@
 import os
 import subprocess
-from shlex import split, join
+from shlex import split, join, quote
 from .get_executable import get_executable
 
 
@@ -27,8 +27,13 @@ def execute_type_cmd(user_cmd_arg, type_arg):
 
 def execute_echo_cmd(user_input:str):
     tokens = split(user_input)
+    print(tokens)
     tokens_str = join(tokens[1:])
-    print(tokens_str)
+
+    if tokens_str.startswith("'") and tokens_str.endswith("'"):
+        print(tokens_str.replace("'", ""))
+    else:
+        print(tokens_str)
         
 
 def execute_default(user_cmd_arg, user_cmd):
