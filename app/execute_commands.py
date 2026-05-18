@@ -1,6 +1,6 @@
 import os
 import subprocess
-import re
+from shlex import split, join
 from .get_executable import get_executable
 
 
@@ -26,17 +26,9 @@ def execute_type_cmd(user_cmd_arg, type_arg):
         print(f"{user_cmd_arg[1]} not found")
 
 def execute_echo_cmd(user_input:str):
-    args = re.search(r"\s(.*)", user_input).group(1)
-    tokens = re.findall(r"'[^']*(?:''[^']*)*'|\S+", args)
-
-    result = []
-    for token in tokens:
-        if token.startswith("'") and token.endswith("'"):
-            result.append(token[1:-1].replace("''", ""))
-        else:
-            result.append(token.replace("''", ""))
-    
-    print(" ".join(result))
+    tokens = split(user_input)
+    tokens_str = join(tokens[1:])
+    print(tokens_str)
         
 
 def execute_default(user_cmd_arg, user_cmd):
