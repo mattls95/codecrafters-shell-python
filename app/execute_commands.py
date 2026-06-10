@@ -35,7 +35,6 @@ def execute_cat_cmd(user_input:str):
     print(subprocess.run(args=args,capture_output=True,text=True).stdout,end="")
 
 def execute_default(user_cmd_arg, user_cmd):
-    print(user_cmd)
     file_path = get_executable(user_cmd)
     if file_path:
         print(subprocess.run(user_cmd_arg, capture_output=True, text=True).stdout,end="")
