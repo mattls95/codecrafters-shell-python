@@ -1,4 +1,5 @@
 import sys
+import shlex
 from .execute_commands import execute_pwd_cmd, execute_type_cmd, execute_echo_cmd, execute_default, execute_cd_cmd, execute_cat_cmd
 
 
@@ -10,8 +11,8 @@ def main():
             user_input = input()
         except KeyboardInterrupt:
             sys.exit(0)
-            
-        user_cmd_arg = user_input.split(" ")
+
+        user_cmd_arg = shlex.split(user_input)
         user_cmd = user_cmd_arg[0]
   
         match user_cmd:
