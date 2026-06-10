@@ -6,7 +6,11 @@ def main():
     
     while True:
         sys.stdout.write("$ ")
-        user_input = input()
+        try:
+            user_input = input()
+        except KeyboardInterrupt:
+            sys.exit(0)
+            
         user_cmd_arg = user_input.split(" ")
         user_cmd = user_cmd_arg[0]
   
